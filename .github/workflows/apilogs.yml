@@ -1,0 +1,14 @@
+# .github/workflows/sync-checker.yml
+name: Clear API  Logs
+on:
+  schedule:
+    - cron: '0 0 28 * *'
+  workflow_dispatch:  # Allows manual triggering via GitHub Actions UI
+jobs:
+  webhook:
+    name: Clear API Logs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping API log clearing check
+        run: |
+          curl -n "https://beatfinder.app/api/functions/cleanupApiLogs"
