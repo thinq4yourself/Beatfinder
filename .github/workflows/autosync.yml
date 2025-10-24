@@ -1,0 +1,15 @@
+
+# .github/workflows/sync-checker.yml
+name: Check Auto-Sync
+on:
+  schedule:
+    - cron: '0 0,3,6,9,12,15,18,21 * * *'
+  workflow_dispatch:  # Allows manual triggering via GitHub Actions UI
+jobs:
+  webhook:
+    name: Check Autosync
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping auto-sync webhook
+        run: |
+          curl -n "https://beatfinder.app/api/functions/checkSyncSchedules"
